@@ -4,7 +4,7 @@ prett: A Pretty Project Framework
 .. image:: https://travis-ci.com/KD-Group/prett.svg?branch=master
     :target: https://travis-ci.com/KD-Group/prett
 
-A pretty project framework for Python3 & PySide.
+A pretty project framework for Python3 & PySide6.
 
 I hope it is useful for you, too. :D
 

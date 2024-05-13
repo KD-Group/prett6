@@ -32,7 +32,7 @@ print("use latest tag as version: {}".format(get_git_version()))
 print("use requirements.txt as install_requires: {}".format(req_list))
 
 setup(
-    name='prett',
+    name='prett6',
     version=get_git_version(),
     description='A Pretty Project Framework',
     long_description=readme(),
@@ -50,11 +50,15 @@ setup(
         'License :: OSI Approved :: MIT License',
 
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3 :: Only',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
     ],
 
     keywords='qt ui',
     packages=find_packages(exclude=['docs', 'tests']),
     include_package_data=True,
     install_requires=req_list,
+    python_requires='>=3.8',
 )

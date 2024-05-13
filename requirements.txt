@@ -1,2 +1,2 @@
-PySide
+PySide6
 typing

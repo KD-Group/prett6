@@ -1,6 +1,6 @@
 language: python
 python:
-- '3.4'
+- '3.8'
 install:
 - sudo apt-get install libqt4-dev
 - pip install PySide --no-index --find-links https://parkin.github.io/python-wheelhouse/;
@@ -12,7 +12,7 @@ script:
 - python -m pytest
 deploy:
   provider: pypi
-  user: Jefung
+  user: WingC
   on:
     tags: true
   password:
