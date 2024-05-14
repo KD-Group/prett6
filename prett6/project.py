@@ -56,7 +56,7 @@ class SaveInterface(ValueModel):
 
 class AbstractProject(DictValueModel, SaveInterface, ChangedInterface):
     def get_value(self) -> dict:
-        return self.create(dict)
+        return self._create(dict)
 
     def set_value(self, value):
         self.value.clear()
@@ -73,7 +73,7 @@ class AbstractProject(DictValueModel, SaveInterface, ChangedInterface):
     # children property
     @property
     def children(self) -> typing.List['AbstractProjectItem']:
-        return self.create(list)
+        return self._create(list)
 
     # name property
     def __setattr__(self, key: str, value):
@@ -104,7 +104,7 @@ class AbstractProjectItem(StringItemInterface):
 
     @property
     def name(self) -> str:
-        return self.create(str)
+        return self._create(str)
 
     @name.setter
     def name(self, value):
@@ -112,7 +112,7 @@ class AbstractProjectItem(StringItemInterface):
 
     @property
     def self_storage(self):
-        return self.create(lambda: None)
+        return self._create(lambda: None)
 
     @self_storage.setter
     def self_storage(self, value):
@@ -155,7 +155,7 @@ class TimePointItem(StringProjectItem):
 
     @property
     def time(self):
-        return self.create(TimePointItem.TimePointProperty, args=(self, self.t_format))
+        return self._create(TimePointItem.TimePointProperty, args=(self, self.t_format))
 
 
 class Enum(enum.Enum):
@@ -207,4 +207,4 @@ class EnumItem(AbstractProjectItem, StringItemInterface):
 
     @property
     def type(self):
-        return self.create(self.EnumProperty, args=(self, self.enum))
+        return self._create(self.EnumProperty, args=(self, self.enum))

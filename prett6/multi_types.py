@@ -22,7 +22,7 @@ class StringProperty(AbstractProperty, StringValueModel):
 class StringItemInterface(AbstractItem):
     @property
     def string(self) -> StringProperty:
-        return self.create(StringProperty, args=(self,))
+        return self._create(StringProperty, args=(self,))
 
 
 class StringItem(StringItemInterface):
@@ -46,7 +46,7 @@ class IntProperty(AbstractProperty, IntValueModel):
 class IntItemInterface(AbstractItem):
     @property
     def int(self) -> IntProperty:
-        return self.create(IntProperty, args=(self,))
+        return self._create(IntProperty, args=(self,))
 
 
 class IntItem(IntItemInterface):
@@ -70,7 +70,7 @@ class FloatProperty(AbstractProperty, FloatValueModel):
 class FloatItemInterface(AbstractItem):
     @property
     def float(self) -> FloatProperty:
-        return self.create(FloatProperty, args=(self,))
+        return self._create(FloatProperty, args=(self,))
 
 
 class FloatItem(FloatItemInterface):
@@ -121,7 +121,7 @@ class DictItemInterface(AbstractItem):
 
     @property
     def dict(self) -> DictProperty:
-        return self.create(DictProperty, args=(self,))
+        return self._create(DictProperty, args=(self,))
 
 
 class DictItem(DictItemInterface):
@@ -149,7 +149,7 @@ class DictListProperty(AbstractProperty, DictListValueModel):
 class DictListItemInterface(AbstractItem):
     @property
     def dict_list(self) -> DictListProperty:
-        return self.create(DictListProperty, args=(self,))
+        return self._create(DictListProperty, args=(self,))
 
 
 class DictListItem(DictListItemInterface):
@@ -199,7 +199,7 @@ class ListItemInterface(AbstractItem):
 
     @property
     def list(self) -> ListProperty:
-        return self.create(ListProperty, args=(self,))
+        return self._create(ListProperty, args=(self,))
 
 
 class ListItem(ListItemInterface):
@@ -227,7 +227,7 @@ class StringListProperty(AbstractProperty, StringListValueModel):
 class StringListItemInterface(AbstractItem):
     @property
     def string_list(self) -> StringListProperty:
-        return self.create(StringListProperty, args=(self,))
+        return self._create(StringListProperty, args=(self,))
 
 
 class StringListItem(StringListItemInterface):
@@ -245,7 +245,7 @@ class StringIntProperty(IntProperty):
 class StringIntItemInterface(StringItemInterface):
     @property
     def int(self) -> StringIntProperty:
-        return self.create(StringIntProperty, args=(self,))
+        return self._create(StringIntProperty, args=(self,))
 
 
 class StringFloatProperty(FloatProperty):
@@ -261,4 +261,4 @@ class StringFloatProperty(FloatProperty):
 class StringFloatItemInterface(StringItemInterface):
     @property
     def float(self) -> StringFloatProperty:
-        return self.create(StringFloatProperty, args=(self,))
+        return self._create(StringFloatProperty, args=(self,))

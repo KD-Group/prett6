@@ -30,7 +30,7 @@ class WidgetStringInterface(AttachAbility):
 
     @property
     def string_item(self) -> StringItem:
-        return self.create(type(self).StringItem, args=(self, ))
+        return self._create(type(self).StringItem, args=(self,))
 
     @property
     def string(self) -> StringProperty:
@@ -55,7 +55,7 @@ class WidgetIndexInterface(AttachAbility):
 
     @property
     def index_item(self) -> IndexItem:
-        return self.create(type(self).IndexItem, args=(self, ))
+        return self._create(type(self).IndexItem, args=(self,))
 
     @property
     def index(self) -> IntProperty:
@@ -72,7 +72,7 @@ class WidgetStringListInterface(AttachAbility):
 
     @property
     def strings_item(self) -> StringsItem:
-        return self.create(type(self).StringsItem, args=(self, ))
+        return self._create(type(self).StringsItem, args=(self,))
 
     @property
     def string_list(self) -> StringListProperty:
@@ -85,7 +85,7 @@ class WidgetDictListInterface(AttachAbility):
 
     @property
     def dict_list_item(self) -> DictListItem:
-        return self.create(type(self).DictListItem, args=(self, ))
+        return self._create(type(self).DictListItem, args=(self,))
 
     @property
     def dict_list(self) -> DictListProperty:
@@ -102,7 +102,7 @@ class WidgetDictInterface(AttachAbility):
 
     @property
     def dict_item(self) -> DictItem:
-        return self.create(type(self).DictItem, args=(self, ))
+        return self._create(type(self).DictItem, args=(self,))
 
     @property
     def dict(self) -> DictProperty:
