@@ -1,18 +1,18 @@
 import unittest
 
-import prett
+import prett6
 
 
 class MyTestCase(unittest.TestCase):
     def test_dict_item_emit_change_condition(self):
-        class ProjectDemo(prett.AbstractProject):
+        class ProjectDemo(prett6.AbstractProject):
             def __init__(self):
-                self.d = prett.DictProjectItem(self)
+                self.d = prett6.DictProjectItem(self)
 
         p = ProjectDemo()
         self.emit_value = None
 
-        @prett.connect_with(p.d.changed)
+        @prett6.connect_with(p.d.changed)
         def copy_value_from_dict_item(data: dict):
             self.emit_value = data.copy()
 
@@ -46,14 +46,14 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(self.emit_value, {3: 4})
 
     def test_list_item_emit_change_condition(self):
-        class ProjectDemo(prett.AbstractProject):
+        class ProjectDemo(prett6.AbstractProject):
             def __init__(self):
-                self.ls = prett.ListProjectItem(self)
+                self.ls = prett6.ListProjectItem(self)
 
         p = ProjectDemo()
         self.emit_value = None
 
-        @prett.connect_with(p.ls.changed)
+        @prett6.connect_with(p.ls.changed)
         def copy_value_from_dict_item(data: list):
             self.emit_value = data.copy()
 
