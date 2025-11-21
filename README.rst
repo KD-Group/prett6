@@ -1,8 +1,7 @@
 prett: A Pretty Project Framework
 ==================================
-
-.. image:: https://travis-ci.com/KD-Group/prett.svg?branch=master
-    :target: https://travis-ci.com/KD-Group/prett
+.. image:: https://ci.appveyor.com/api/projects/status/j08891u3higxbw9u?svg=true
+    :target: https://ci.appveyor.com/project/Wingsgo/prett6
 
 A pretty project framework for Python3 & PySide6.
 
