@@ -17,7 +17,18 @@ class SignalSender:
         self.last_emit = args, kwargs
         self.last_error.clear()
 
-        self.signal.signal.emit((args, kwargs))
+        # 添加检查以避免访问已删除的信号实例
+        try:
+            self.signal.signal.emit((args, kwargs))
+        except RuntimeError as e:
+            if "was already deleted" in str(e):
+                # 信号实例已被删除，记录警告并返回
+                import logging
+                logging.warning("Attempted to emit deleted signal: %s", str(e))
+                return
+            else:
+                # 其他运行时错误，重新抛出
+                raise
 
         if self.last_error:
             raise self.last_error[0]

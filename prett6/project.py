@@ -68,7 +68,17 @@ class AbstractProject(DictValueModel, SaveInterface, ChangedInterface):
 
     def set_property(self, name, value):
         self.value.update({name: value})
-        self.changed.emit(self.value)
+        # 添加检查以防止信号实例已被删除
+        if hasattr(self, 'changed') and self.changed is not None:
+            try:
+                self.changed.emit(self.value)
+            except RuntimeError as e:
+                if "already deleted" in str(e):
+                    # 信号实例已被删除，跳过发射
+                    pass
+                else:
+                    # 重新抛出其他运行时错误
+                    raise
 
     # children property
     @property
