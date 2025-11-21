@@ -1,0 +1,40 @@
+image: Visual Studio 2022
+
+environment:
+  matrix:
+
+    # For Python versions available on Appveyor, see
+    # https://www.appveyor.com/docs/windows-images-software/#python
+    # The list here is complete (excluding Python 2.6, which
+    # isn't covered by this document) at the time of writing.
+
+    - PYTHON: "C:\\Python38-x64"
+    - PYTHON: "C:\\Python39-x64"
+
+  PYPIPASSWORD:
+    secure: RGvnAogQh1u7iEqnqNDU3VbPyFbCNn44j7zo6KMLluoF7/XIn/Yc+DCO/Kcd4fQryu7S4Sc7LoI3QSKrlea9mIL6tvKx1Vyl+S2PgslxFMBe2MyNEjm3BHzWqZ4BgKMcUcedIlQcoIo7ddcrWJjwa2C6i+Wh83+9n8K/Pmu7t6KkYaRnCa78EOV3tkla0vGZjf/Um/z4EbIN/XzWFjLHrGZbGHI3FBkK6ZmfHs2nWCfxoWC/pcP+5NWaDm3HHAVG
+
+install:
+  - SET "PYTHONHOME=%PYTHON%"
+  - SET "PATH=%PYTHON%;%PYTHON%\\Scripts;%PATH%"
+  - python -m pip install --upgrade pip
+  - python -m pip install -U pip wheel setuptools twine
+  - pip install -r requirements.txt
+
+before_test:
+  - python --version
+
+
+build_script:
+  - "[ -e dist ] && rm dist -rf || true"
+  - "%PYTHON%\\python.exe setup.py sdist"
+
+artifacts:
+  # bdist_wheel puts your built wheel in the dist directory
+  - path: dist\*
+
+deploy_script:
+  - "echo [pypi] > %USERPROFILE%\\.pypirc"
+  - "echo username = __token__ >> %USERPROFILE%\\.pypirc"
+  - "echo password = %PYPIPASSWORD% >> %USERPROFILE%\\.pypirc"
+  - if "%APPVEYOR_REPO_TAG%"=="true" ( twine upload dist/* ) else ( echo "Not deploying because not a tagged commit." )
